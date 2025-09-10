@@ -32,8 +32,8 @@ module SolidusStripe::BackendTestHelper
           number: card_number,
           exp_month: 12,
           exp_year: (Time.zone.now.year + 1),
-          cvc: '123',
-        },
+          cvc: '123'
+        }
       })
     end
   end

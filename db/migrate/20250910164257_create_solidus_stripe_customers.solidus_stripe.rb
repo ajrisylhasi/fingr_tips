@@ -10,7 +10,7 @@ class CreateSolidusStripeCustomers < ActiveRecord::Migration[7.0]
       t.timestamps
 
       t.foreign_key :spree_payment_methods, column: :payment_method_id
-      t.index [:payment_method_id, :source_type, :source_id], unique: true, name: :payment_method_and_source
+      t.index [ :payment_method_id, :source_type, :source_id ], unique: true, name: :payment_method_and_source
     end
   end
 end

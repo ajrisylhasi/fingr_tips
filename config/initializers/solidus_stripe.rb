@@ -19,13 +19,13 @@ SolidusStripe.configure do |config|
   # config.refund_reason_name = "Stripe refund"
 end
 
-if ENV['SOLIDUS_STRIPE_API_KEY']
+if ENV["SOLIDUS_STRIPE_API_KEY"]
   Spree::Config.static_model_preferences.add(
-    'SolidusStripe::PaymentMethod',
-    'solidus_stripe_env_credentials',
-    api_key: ENV.fetch('SOLIDUS_STRIPE_API_KEY'),
-    publishable_key: ENV.fetch('SOLIDUS_STRIPE_PUBLISHABLE_KEY'),
-    test_mode: ENV.fetch('SOLIDUS_STRIPE_API_KEY').start_with?('sk_test_'),
-    webhook_endpoint_signing_secret: ENV.fetch('SOLIDUS_STRIPE_WEBHOOK_SIGNING_SECRET')
+    "SolidusStripe::PaymentMethod",
+    "solidus_stripe_env_credentials",
+    api_key: ENV.fetch("SOLIDUS_STRIPE_API_KEY"),
+    publishable_key: ENV.fetch("SOLIDUS_STRIPE_PUBLISHABLE_KEY"),
+    test_mode: ENV.fetch("SOLIDUS_STRIPE_API_KEY").start_with?("sk_test_"),
+    webhook_endpoint_signing_secret: ENV.fetch("SOLIDUS_STRIPE_WEBHOOK_SIGNING_SECRET")
   )
 end

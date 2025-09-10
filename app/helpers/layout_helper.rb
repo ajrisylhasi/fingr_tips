@@ -13,7 +13,7 @@ module LayoutHelper
   def simple_canonical_tag(
     host: current_store&.url,
     collection_actions: %w[index],
-    allowed_parameters: [:keywords, :page, :search, :taxon]
+    allowed_parameters: [ :keywords, :page, :search, :taxon ]
   )
     path = request.path
 
@@ -32,9 +32,9 @@ module LayoutHelper
 
     href = "#{request.protocol}#{host}#{path}"
 
-    trailing_slash = request.params.key?('action') &&
-      collection_actions.include?(request.params['action'])
-    href += '/' if trailing_slash
+    trailing_slash = request.params.key?("action") &&
+      collection_actions.include?(request.params["action"])
+    href += "/" if trailing_slash
 
     query_params = params.select do |key, value|
       value.present? && allowed_parameters.include?(key.to_sym)

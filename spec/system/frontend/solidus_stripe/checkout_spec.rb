@@ -7,7 +7,7 @@ RSpec.describe 'SolidusStripe Checkout', :js do
 
   # To learn more about setup_future_usage in different contexts with Stripe Payment Intents:
   # https://stripe.com/docs/payments/payment-intents#future-usage
-  ['', 'on_session', 'off_session'].each do |setup_future_usage|
+  [ '', 'on_session', 'off_session' ].each do |setup_future_usage|
     context "with Stripe Payment Intents and setup_future_usage=#{setup_future_usage}" do
       before { create_payment_method(setup_future_usage: setup_future_usage) }
 
@@ -48,7 +48,7 @@ RSpec.describe 'SolidusStripe Checkout', :js do
       expects_to_have_specific_authorized_amount_on_stripe(current_order.total - store_credit_amount)
     end
 
-    ['on_session', 'off_session'].each do |setup_future_usage|
+    [ 'on_session', 'off_session' ].each do |setup_future_usage|
       context "when setup_future_usage is set with '#{setup_future_usage}'" do
         before { create_payment_method(setup_future_usage: setup_future_usage) }
 

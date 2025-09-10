@@ -22,7 +22,7 @@ module FingrTips
   class Application < Rails::Application
     if defined?(FactoryBotRails)
       initializer after: "factory_bot.set_factory_paths" do
-        require 'spree/testing_support/factory_bot'
+        require "spree/testing_support/factory_bot"
 
         # The paths for Solidus' core factories.
         solidus_paths = Spree::TestingSupport::FactoryBot.definition_file_paths
@@ -36,7 +36,7 @@ module FingrTips
 
         # Your application's own factories.
         app_paths = [
-          Rails.root.join('spec/factories'),
+          Rails.root.join("spec/factories")
         ]
 
         FactoryBot.definition_file_paths = solidus_paths + extension_paths + app_paths

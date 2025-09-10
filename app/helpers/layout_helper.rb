@@ -15,11 +15,22 @@ module LayoutHelper
     collection_actions: %w[index],
     allowed_parameters: [:keywords, :page, :search, :taxon]
   )
-    path_without_extension = request.path
-      .sub(/\.#{params[:format]}$/, "")
-      .sub(/\/$/, "")
+    path = request.path
 
-    href = "#{request.protocol}#{host}#{path_without_extension}"
+    path = path == "/" ? path : path.chomp("/")
+
+    fmt = request.format&.symbol&.to_s
+    if fmt.present?
+      dot_ext = ".#{fmt}"
+      path = path[0...-dot_ext.length] if path.end_with?(dot_ext)
+    else
+      if path =~ /\A.+\.[A-Za-z0-9]+\z/
+        ext = path.split(".").last
+        path = path[0...-(ext.length + 1)]
+      end
+    end
+
+    href = "#{request.protocol}#{host}#{path}"
 
     trailing_slash = request.params.key?('action') &&
       collection_actions.include?(request.params['action'])
